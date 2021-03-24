@@ -10,11 +10,6 @@ const {
 } = require("../db/student");
 const { response } = require("express");
 
-router.get("/", async (req, res) => {
-  let data = await getStudentInfo();
-  res.status(200).send(data);
-});
-
 router.get("/:id", async (req, res) => {
   getStudentInfo(req.params.id)
     .then((info) => {
@@ -28,7 +23,9 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/new", async (req, res) => {
+  console.log(req.body);
   let data = req.body;
+  return;
   createStudentInfo(data)
     .then((newStudent) => res.status(201).send(newStudent))
     .catch((err) => res.status(401).send("Could not create new Student"));
@@ -81,6 +78,11 @@ router.put("/attendance", (req, res) => {
     )
   );
   res.status(200).send("Attendance Recorded");
+});
+
+router.get("/", async (req, res) => {
+  let data = await getStudentInfo();
+  res.status(200).send(data);
 });
 
 module.exports = router;

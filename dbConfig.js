@@ -8,7 +8,7 @@ const dbDebug = require("debug")("db");
 // })
 
 mongoose
-  .connect("mongodb://localhost/school_admin", {
+  .connect("mongodb://localhost/school_api", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
